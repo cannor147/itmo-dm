@@ -1,0 +1,140 @@
+start: prepare_to_multiply
+accept: ac
+reject: rj
+blank: _
+
+prepare_to_multiply 0 -> prepare_to_multiply 0 <
+prepare_to_multiply 1 -> prepare_to_multiply 1 <
+prepare_to_multiply _ -> transform + >
+
+transform 0 -> transform c >
+transform 1 -> transform d >
+transform * -> prepared_to_add_zero * <
+
+prepare_for_zero c -> prepare_for_zero c >
+prepare_for_zero d -> prepare_for_zero d >
+prepare_for_zero 0 -> prepared_to_add_zero 0 <
+prepare_for_zero 1 -> prepared_to_add_zero 1 <
+
+prepared_to_add_zero c -> add_zero 0 <
+prepared_to_add_zero d -> add_zero 1 <
+prepared_to_add_zero + -> walk_to_multiply + >
+
+add_zero c -> add_zero c <
+add_zero d -> add_zero d <
+add_zero 0 -> add_zero 0 <
+add_zero 1 -> add_zero 1 <
+add_zero + -> add_zero + <
+add_zero _ -> added_zero 0 >
+
+added_zero 0 -> added_zero 0 >
+added_zero + -> prepare_for_zero + >
+
+walk_to_multiply _ -> walk_to_multiply 0 >
+walk_to_multiply + -> walk_to_multiply + >
+walk_to_multiply 0 -> walk_to_multiply 0 >
+walk_to_multiply 1 -> walk_to_multiply 1 >
+walk_to_multiply * -> walk_to_dec * >
+
+walk_to_dec 0 -> walk_to_dec 0 >
+walk_to_dec 1 -> walk_to_dec 1 >
+walk_to_dec _ -> dec _ <
+
+dec 1 -> walk_back 0 <
+dec 0 -> dec 1 <
+dec * -> walk_to_clear * >
+
+walk_back 0 -> walk_back 0 <
+walk_back 1 -> walk_back 1 <
+walk_back * -> walk_to_add * <
+
+walk_to_add 0 -> walk_to_add 0 <
+walk_to_add 1 -> walk_to_add 1 <
+walk_to_add + -> change_notation + <
+
+walk + -> walk + >
+walk 0 -> walk 0 >
+walk 1 -> walk 1 >
+walk _ -> id _ <
+walk * -> id * <
+walk c -> id c <
+walk d -> id d <
+
+id + -> change_notation_once + <
+id 0 -> walk_to_add_a c <
+id 1 -> walk_to_add_b d <
+
+walk_to_add_a 0 -> walk_to_add_a 0 <
+walk_to_add_a 1 -> walk_to_add_a 1 <
+walk_to_add_a + -> add_a + <
+walk_to_add_b 0 -> walk_to_add_b 0 <
+walk_to_add_b 1 -> walk_to_add_b 1 <
+walk_to_add_b + -> add_b + <
+
+add_a 0 -> add_a 0 <
+add_a 1 -> add_a 1 <
+add_b 0 -> add_b 0 <
+add_b 1 -> add_b 1 <
+
+add_a a -> add_a a <
+add_a b -> add_a b <
+add_a _ -> return _ >
+add_b a -> add_a b <
+add_b b -> add_b a <
+add_b _ -> return b >
+
+return a -> return a >
+return b -> return b >
+return 0 -> change_notation_once 0 <
+return 1 -> change_notation_once 1 <
+return + -> change_notation_once + <
+
+change_notation_once 0 -> change_notation_once 0 <
+change_notation_once 1 -> change_notation_once 1 <
+change_notation_once a -> walk 0 >
+change_notation_once b -> walk 1 >
+change_notation_once _ -> change_notation_cd _ >
+
+change_notation_cd 0 -> change_notation_cd 0 >
+change_notation_cd 1 -> change_notation_cd 1 >
+change_notation_cd + -> change_notation_cd + >
+change_notation_cd c -> change_notation_cd 0 >
+change_notation_cd d -> change_notation_cd 1 >
+change_notation_cd _ -> recover _ <
+change_notation_cd * -> recover * <
+
+recover 0 -> recover 0 <
+recover 1 -> recover 1 <
+recover + -> recover + <
+recover _ -> change_notation_ab _ >
+
+change_notation_ab 0 -> change_notation_ab 0 >
+change_notation_ab 1 -> change_notation_ab 1 >
+change_notation_ab a -> change_notation_ab 0 >
+change_notation_ab b -> change_notation_ab 1 >
+change_notation_ab + -> walk_to_multiply + >
+
+change_notation 0 -> change_notation a <
+change_notation 1 -> change_notation b <
+change_notation _ -> prepared_to_add _ >
+
+prepared_to_add a -> prepared_to_add a >
+prepared_to_add b -> prepared_to_add b >
+prepared_to_add + -> walk + ^
+
+walk_to_clear 0 -> walk_to_clear 0 >
+walk_to_clear 1 -> walk_to_clear 1 >
+walk_to_clear _ -> clear _ <
+
+clear 0 -> clear _ <
+clear 1 -> clear _ <
+clear * -> clear _ <
+clear + -> end _ <
+
+end 0 -> end 0 <
+end 1 -> end 1 <
+end _ -> delete_leading_zero _ >
+
+delete_leading_zero 0 -> delete_leading_zero _ >
+delete_leading_zero 1 -> ac 1 ^
+delete_leading_zero _ -> ac 0 ^

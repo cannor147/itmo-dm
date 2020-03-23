@@ -1,0 +1,55 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0 -> s A >
+s 1 -> s B >
+s + -> right + >
+
+right + -> right + >
+right 0 -> right 0 >
+right 1 -> right 1 >
+right _ -> id _ <
+
+id + -> change + <
+id 0 -> left0 _ <
+id 1 -> left1 _ <
+
+left0 0 -> left0 0 <
+left0 1 -> left0 1 <
+left0 + -> leftA + <
+left1 0 -> left1 0 <
+left1 1 -> left1 1 <
+left1 + -> leftB + <
+
+leftA 0 -> leftA 0 <
+leftA 1 -> leftA 1 <
+leftB 0 -> leftB 0 <
+leftB 1 -> leftB 1 <
+
+leftA A -> leftA A <
+leftA B -> leftA B <
+leftA _ -> go _ >
+leftB A -> leftA B <
+leftB B -> leftB A <
+leftB _ -> go B >
+
+go A -> go A >
+go B -> go B >
+go 0 -> change 0 <
+go 1 -> change 1 <
+go + -> change + <
+
+change 0 -> change 0 <
+change 1 -> change 1 <
+change A -> right 0 >
+change B -> right 1 >
+change _ -> plus _ >
+
+plus 0 -> plus 0 >
+plus 1 -> plus 1 >
+plus + -> end _ <
+end 0 -> end 0 <
+end 1 -> end 1 <
+end _ -> ac _ >

@@ -1,0 +1,39 @@
+start: separate
+accept: ac
+reject: rj
+blank: _
+
+separate 0 -> separate 0 <
+separate 1 -> separate 1 <
+separate 2 -> separate 2 <
+separate _ -> zero $ <
+
+zero _ -> walk 0 >
+
+walk 0 -> walk 0 >
+walk 1 -> walk 1 >
+walk 2 -> walk 2 >
+walk $ -> walk $ >
+walk _ -> dec _ <
+
+dec 2 -> return 1 <
+dec 1 -> return 0 <
+dec 0 -> dec 2 <
+dec $ -> clear $ >
+
+return 0 -> return 0 <
+return 1 -> return 1 <
+return 2 -> return 2 <
+return $ -> inc $ <
+
+inc _ -> walk 1 >
+inc 0 -> walk 1 >
+inc 1 -> inc 0 <
+
+clear 2 -> clear $ >
+clear _ -> clear _ <
+clear $ -> clear _ <
+clear 0 -> return 0 ^
+clear 1 -> return 1 ^
+
+return _ -> ac _ >

@@ -1,0 +1,215 @@
+1
+
+S 0 -> add_closing_bracket 0 >
+S 1 -> add_closing_bracket 1 >
+
+add_closing_bracket 0 -> add_closing_bracket 0 >
+add_closing_bracket 1 -> add_closing_bracket 1 >
+add_closing_bracket | -> add_closing_bracket | >
+add_closing_bracket _ -> add_special_symbol | >
+
+add_opening_bracket 0 -> add_opening_bracket 0 <
+add_opening_bracket 1 -> add_opening_bracket 1 <
+add_opening_bracket | -> add_opening_bracket | <
+add_opening_bracket _ -> add_zero ( <
+
+add_special_symbol _ -> add_opening_bracket ? <
+
+add_zero _ -> walk 0 >
+
+walk ( -> walk ( >
+walk 0 -> walk 0 >
+walk 1 -> walk 1 >
+walk a -> walk 0 >
+walk b -> walk 1 >
+walk $ -> walk $ >
+walk # -> walk $ >
+walk - -> walk - >
+walk | -> check # <
+walk ? -> check_if_sorted ? <
+
+check ( -> insert ( >
+check $ -> insert $ >
+check - -> check - <
+check 0 -> walk_to_check_a a <
+check 1 -> walk_to_check_b b <
+
+walk_to_check_a 0 -> walk_to_check_a 0 <
+walk_to_check_a 1 -> walk_to_check_a 1 <
+walk_to_check_a | -> walk_to_check_a | <
+walk_to_check_a $ -> walk_to_check_a $ <
+walk_to_check_a - -> walk_to_check_a - <
+walk_to_check_a ( -> check_a ( <
+
+walk_to_check_b 0 -> walk_to_check_b 0 <
+walk_to_check_b 1 -> walk_to_check_b 1 <
+walk_to_check_b | -> walk_to_check_b | <
+walk_to_check_b $ -> walk_to_check_b $ <
+walk_to_check_b - -> walk_to_check_b - <
+walk_to_check_b ( -> check_b ( <
+
+check_a 0 -> walk_to_check_again c >
+check_a 1 -> walk_to_check_next 1 >
+check_a _ -> walk_to_check_next _ >
+check_a c -> check_a c <
+check_a d -> check_a d <
+
+check_b 0 -> walk_to_check_next 0 >
+check_b 1 -> walk_to_check_again d >
+check_b _ -> walk_to_check_next _ >
+check_b c -> check_b c <
+check_b d -> check_b d <
+
+walk_to_check_next 0 -> walk_to_check_next 0 >
+walk_to_check_next 1 -> walk_to_check_next 1 >
+walk_to_check_next c -> walk_to_check_next 0 >
+walk_to_check_next d -> walk_to_check_next 1 >
+walk_to_check_next ( -> walk ( >
+
+walk_to_check_again c -> walk_to_check_again c >
+walk_to_check_again d -> walk_to_check_again d >
+walk_to_check_again ( -> walk_to_check_again ( >
+walk_to_check_again 0 -> walk_to_check_again 0 >
+walk_to_check_again 1 -> walk_to_check_again 1 >
+walk_to_check_again $ -> walk_to_check_again $ >
+walk_to_check_again - -> walk_to_check_again - >
+walk_to_check_again a -> check a <
+walk_to_check_again b -> check b <
+
+insert 0 -> insert 0 >
+insert 1 -> insert 1 >
+insert a -> insert_a - >
+insert b -> insert_b - >
+insert - -> insert - >
+insert # -> insert_separator - >
+
+insert_a a -> insert_a a >
+insert_a b -> insert_a b >
+insert_a 0 -> insert_a 0 >
+insert_a 1 -> insert_a 1 >
+insert_a | -> insert_a | >
+insert_a ? -> insert_a ? >
+insert_a # -> insert_a # >
+insert_a - -> insert_a - >
+insert_a _ -> walk_to_insert 0 <
+
+insert_b a -> insert_b a >
+insert_b b -> insert_b b >
+insert_b 0 -> insert_b 0 >
+insert_b 1 -> insert_b 1 >
+insert_b | -> insert_b | >
+insert_b ? -> insert_b ? >
+insert_b # -> insert_b # >
+insert_b - -> insert_b - >
+insert_b _ -> walk_to_insert 1 <
+
+insert_separator 0 -> insert_separator 0 >
+insert_separator 1 -> insert_separator 1 >
+insert_separator | -> insert_separator | >
+insert_separator ? -> insert_separator ? >
+insert_separator # -> insert_separator # >
+insert_separator - -> insert_separator - >
+insert_separator _ -> walk_to_begin | <
+
+walk_to_insert a -> walk_to_insert a <
+walk_to_insert b -> walk_to_insert b <
+walk_to_insert 0 -> walk_to_insert 0 <
+walk_to_insert 1 -> walk_to_insert 1 <
+walk_to_insert | -> walk_to_insert | <
+walk_to_insert ? -> walk_to_insert ? <
+walk_to_insert - -> walk_to_insert - <
+walk_to_insert # -> find_symbol_to_insert # <
+
+find_symbol_to_insert a -> find_symbol_to_insert a <
+find_symbol_to_insert b -> find_symbol_to_insert b <
+find_symbol_to_insert - -> insert - >
+
+walk_to_begin 0 -> walk_to_begin 0 <
+walk_to_begin 1 -> walk_to_begin 1 <
+walk_to_begin c -> walk_to_begin c <
+walk_to_begin d -> walk_to_begin d <
+walk_to_begin $ -> walk_to_begin $ <
+walk_to_begin ? -> walk_to_begin ? <
+walk_to_begin | -> walk_to_begin | <
+walk_to_begin ( -> walk_to_begin ( <
+walk_to_begin - -> walk_to_begin - <
+walk_to_begin _ -> walk_to_check_next _ >
+
+check_if_sorted 0 -> walk_to_inc 0 <
+check_if_sorted 1 -> walk_to_inc 1 <
+check_if_sorted | -> walk_to_inc | <
+check_if_sorted $ -> walk_to_inc | <
+check_if_sorted - -> check_if_sorted - <
+check_if_sorted ( -> walk_to_clear ( <
+
+walk_to_inc 0 -> walk_to_inc 0 <
+walk_to_inc 1 -> walk_to_inc 1 <
+walk_to_inc | -> walk_to_inc | <
+walk_to_inc $ -> walk_to_inc | <
+walk_to_inc - -> walk_to_inc - <
+walk_to_inc ( -> inc ( <
+
+inc _ -> walk_to_check_next 1 >
+inc 0 -> walk_to_check_next 1 >
+inc 1 -> inc 0 <
+
+walk_to_clear 0 -> walk_to_clear 0 <
+walk_to_clear 1 -> walk_to_clear 1 <
+walk_to_clear _ -> clear _ >
+
+clear 0 -> clear _ >
+clear 1 -> clear _ >
+clear ( -> clear _ >
+clear - -> clear _ >
+clear ? -> walk_to_end _ >
+
+walk_to_end 0 -> walk_to_end 0 >
+walk_to_end 1 -> walk_to_end 1 >
+walk_to_end | -> walk_to_end | >
+walk_to_end _ -> delete_last_symbol _ <
+
+delete_last_symbol | -> end _ <
+
+end 0 -> end 0 <
+end 1 -> end 1 <
+end | -> end | <
+end _ -> AC _ >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

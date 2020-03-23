@@ -1,0 +1,29 @@
+start: begin
+accept: ac
+reject: rj
+blank: _
+
+begin ( -> found_opening ( >
+begin - -> begin - >
+begin ) -> rj ) >
+begin _ -> ac _ ^
+
+find_opening ( -> found_opening ( >
+find_opening - -> find_opening - >
+find_opening ) -> find_opening ) >
+
+found_opening ( -> found_opening ( >
+found_opening - -> found_opening - >
+found_opening ) -> found_closing ) ^
+
+found_closing ) -> found_closing - <
+found_closing - -> found_closing - <
+found_closing ( -> find_opening - >
+
+find_opening _ -> walk_to_begin _ <
+found_opening _ -> rj _ ^
+
+walk_to_begin ( -> walk_to_begin ( <
+walk_to_begin - -> walk_to_begin - <
+walk_to_begin ) -> walk_to_begin ) <
+walk_to_begin _ -> begin _ >

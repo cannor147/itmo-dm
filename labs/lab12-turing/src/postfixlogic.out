@@ -1,0 +1,46 @@
+1
+
+S 0 -> count 0 ^
+S 1 -> count 1 ^
+
+count 0 -> count 0 >
+count 1 -> count 1 >
+count o -> or o <
+count a -> and a <
+count _ -> AC _ <
+
+or _ -> or _ <
+or 0 -> or_$a _ <
+or 1 -> or_$b _ <
+
+or_$a _ -> or_$a _ <
+or_$a 0 -> or_a _ >
+or_$a 1 -> or_b _ >
+
+or_$b _ -> or_$b _ <
+or_$b 0 -> or_b _ >
+or_$b 1 -> or_b _ >
+
+or_a _ -> or_a _ >
+or_a o -> count 0 >
+
+or_b _ -> or_b _ >
+or_b o -> count 1 >
+
+and _ -> and _ <
+and 0 -> and_$a _ <
+and 1 -> and_$b _ <
+
+and_$a _ -> and_$a _ <
+and_$a 0 -> and_a _ >
+and_$a 1 -> and_a _ >
+
+and_$b _ -> and_$b _ <
+and_$b 0 -> and_a _ >
+and_$b 1 -> and_b _ >
+
+and_a _ -> and_a _ >
+and_a a -> count 0 >
+
+and_b _ -> and_b _ >
+and_b a -> count 1 >

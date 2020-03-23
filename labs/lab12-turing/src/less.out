@@ -1,0 +1,61 @@
+start: right_change
+accept: ac
+reject: rj
+blank: _
+
+right_change 1 -> right_walk b >
+right_change 0 -> right_walk a >
+
+right_walk < -> right_walk < >
+right_walk 1 -> right_walk 1 >
+right_walk 0 -> right_walk 0 >
+right_walk a -> left_change a <
+right_walk b -> left_change b <
+right_walk _ -> left_change _ <
+
+left_change 1 -> left_walk b <
+left_change 0 -> left_walk a <
+
+left_walk < -> left_walk < <
+left_walk 1 -> left_walk 1 <
+left_walk 0 -> left_walk 0 <
+left_walk a -> right_change a >
+left_walk b -> right_change b >
+left_walk _ -> right_change _ >
+
+right_change a -> change_notation a ^
+right_change b -> change_notation b ^
+left_change a -> rj a ^
+left_change b -> rj b ^
+
+walk_to_check_a < -> walk_to_check_a < <
+walk_to_check_a a -> walk_to_check_a a <
+walk_to_check_a b -> walk_to_check_a b <
+walk_to_check_a _ -> check_a _ >
+
+walk_to_check_b < -> walk_to_check_b < <
+walk_to_check_b a -> walk_to_check_b a <
+walk_to_check_b b -> walk_to_check_b b <
+walk_to_check_b _ -> check_b _ >
+
+left_change < -> rj < ^
+right_change < -> check_eq < >
+check_eq 0 -> ac 0 ^
+check_eq 1 -> ac 1 ^
+check_eq a -> prepare a ^
+check_eq b -> prepare b ^
+
+check_a a -> walk _ >
+check_a b -> rj _ ^
+
+check_b a -> ac _ ^
+check_b b -> walk _ >
+
+walk a -> walk a >
+walk b -> walk b >
+walk < -> prepare < >
+
+prepare < -> prepare < >
+prepare a -> walk_to_check_a < <
+prepare b -> walk_to_check_b < <
+prepare _ -> rj _ ^

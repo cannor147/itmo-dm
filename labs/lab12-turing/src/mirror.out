@@ -1,0 +1,22 @@
+start: change_notation
+accept: ac
+reject: rj
+blank: _
+
+change_notation 0 -> change_notation a >
+change_notation 1 -> change_notation b >
+change_notation _ -> find _ <
+
+find 0 -> find 0 <
+find 1 -> find 1 <
+find b -> found_b 1 >
+find a -> found_a 0 >
+
+found_a 0 -> found_a 0 >
+found_a 1 -> found_a 1 >
+found_a _ -> find 0 <
+found_b 0 -> found_b 0 >
+found_b 1 -> found_b 1 >
+found_b _ -> find 1 <
+
+find _ -> ac _ >
