@@ -8,49 +8,49 @@
 
 1. Булевы функции
     * **примерные темы:** _бинарные отношения, булевы функции_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab01-boolean-function/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab01-boolean-function)
+    * [условия](lab01-boolean-function/tasks.pdf), [решения](lab01-boolean-function)
 2. Алгоритмы сжатия информации
     * **примерные темы:** _представление информации, алгоритмы сжатия_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab02-compression/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab02-compression)
+    * [условия](lab02-compression/tasks.pdf), [решения](lab02-compression)
 3. Комбинаторика
     * **примерные темы:** _комбинаторные объекты, генерация комбинаторных объектов, подсчёт числа объектов_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab03-combinatorics/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab03-combinatorics)
+    * [условия](lab03-combinatorics/tasks.pdf), [решения](lab03-combinatorics)
 
 ## 2 семестр
 
 4. Теория вероятности
     * **примерные темы:** _основы теории вероятности, марковские цепи_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab04-probability/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab04-probability)
+    * [условия](lab04-probability/tasks.pdf), [решения](lab04-probability)
 5. Конечные автоматы
     * **примерные темы:** _автоматы и регулярные языки_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab05-automata/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab05-automata)
+    * [условия](lab05-automata/tasks.pdf), [решения](lab05-automata)
 6. КС-грамматики
     * **примерные темы:** _контекстно-свободные грамматики_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab06-cf-grammar/tasks.pdf)
+    * [условия](lab06-cf-grammar/tasks.pdf)
 
 ## 3 семестр
 
 7. Гамильтоновы циклы
     * **примерные темы:** _гамильтоновы графы_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab07-hamilton/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab07-hamilton)
+    * [условия](lab07-hamilton/tasks.pdf), [решения](lab07-hamilton)
 8. Матроиды
     * **примерные темы:** _основы теории матроидов_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab08-matroids/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab08-matroids)
+    * [условия](lab08-matroids/tasks.pdf), [решения](lab08-matroids)
 9. Пересечения матроидов
     * **примерные темы:** _пересечение матроидов_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab09-matroids-intersection/tasks.pdf)
+    * [условия](lab09-matroids-intersection/tasks.pdf)
 10. Планарные графы
     * **примерные темы:** _укладки графов, раскраски графов_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab10-planar/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab10-planar)
+    * [условия](lab10-planar/tasks.pdf), [решения](lab10-planar)
 
 ## 4 семестр
 
 11. Производящие функции
     * **примерные темы:** _генерация комбинаторных объектов, подсчёт числа объектов, производящие функции_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab11-genfunction/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab11-genfunction)
+    * [условия](lab11-genfunction/tasks.pdf), [решения](lab11-genfunction)
 12. Машина Тьюринга
     * **примерные темы:** _разрешимые и перечислимые языки, машина Тьюринга_
-    * [условия](https://github.com/cannor147/itmo-dm/blob/master/lab12-turing/tasks.pdf), [решения](https://github.com/cannor147/itmo-dm/blob/master/lab12-turing)
+    * [условия](lab12-turing/tasks.pdf), [решения](lab12-turing)
 
 # Полезные ссылки
 
