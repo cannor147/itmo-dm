@@ -1,8 +1,8 @@
-# Дискретная математика
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md) [![en](https://img.shields.io/badge/lang-ru-blue.svg)](README.ru.md)
 
-## Сведения о курсе
+# Дискретная Математика
 
-Курс читался [Андреем Станкевичем](https://github.com/andrewzta) в Университете ИТМО в 2017-19 годах (year2017, 1-4 семестры).
+Курс подготовил и прочитал [Андрей Станкевич](https://github.com/andrewzta) в Университете ИТМО в 2017—19 годах (year2017, 1—4 семестры).
 
 ## Лабораторные работы
 
