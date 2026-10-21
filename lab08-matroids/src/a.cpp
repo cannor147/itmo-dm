@@ -32,7 +32,7 @@ int main() {
         kek k(w, d);
         v.push_back(k);
     }
-    sort(v.begin(), v.end());
+    sort(v.begin(), v.end(), [](const kek &a, const kek &b) { return a.deadline < b.deadline; });
     priority_queue<kek> q;
     for (size_t i = 0; i < n; i++) {
         if (v[i].deadline <= time) {

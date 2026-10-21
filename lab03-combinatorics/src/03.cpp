@@ -11,7 +11,7 @@ int main(){
 
     int three[15], n;
     three[0] = 1;
-    for (int i = 1; i < 20; i++) three[i] = three[i - 1] * 3;
+    for (int i = 1; i < 15; i++) three[i] = three[i - 1] * 3;
     cin >> n;
     string c;
     for (int i = 0; i < three[n - 1]; i++){

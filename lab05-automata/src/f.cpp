@@ -32,21 +32,6 @@ private:
 
     vector<State> states;
 
-    bool rec(vector<bool> &visited, DFA &d2, int u, int v) {
-        visited[v] = true;
-        if (states[u].is_final != d2.states[v].is_final) return false;
-        bool result = true;
-        for (const auto &j : states[u].transitions) {
-            if (d2.states[v].transitions.count(j.first) == 0) return false;
-            int u_child = j.second;
-            int v_child = states[v].transitions.find(j.first)->second;
-            if (states[u].is_devilish != d2.states[v].is_devilish) return false;
-            if (!(visited[u])) {
-                result &= rec(visited, d2, u_child, v_child);
-            }
-        }
-        return result;
-    }
 
 public:
 
@@ -78,9 +63,25 @@ public:
     }
 
     bool is_isomorphic(DFA &d2) {
-        vector<bool> visited(size());
-        fill(visited.begin(), visited.end(), false);
-        return rec(visited, d2, 0, 0);
+        if (size() != d2.size()) return false;
+        vector<int> to(size(), -1), from(size(), -1), todo{0};
+        to[0] = from[0] = 0;
+        for (int k = 0; k < todo.size(); k++) {
+            int u = todo[k], v = to[u];
+            if (states[u].is_final != d2.states[v].is_final ||
+                states[u].transitions.size() != d2.states[v].transitions.size()) return false;
+            for (const auto &e : states[u].transitions) {
+                auto it = d2.states[v].transitions.find(e.first);
+                if (it == d2.states[v].transitions.end()) return false;
+                int a = e.second, b = it->second;
+                if (to[a] == -1 && from[b] == -1) {
+                    to[a] = b;
+                    from[b] = a;
+                    todo.push_back(a);
+                } else if (to[a] != b || from[b] != a) return false;
+            }
+        }
+        return true;
     }
 };
 

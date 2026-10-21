@@ -347,7 +347,7 @@ int main() {
     for (size_t i = 0; i < m; i++) {
         auto re = edg[i].first;
         swap(re.second.first, re.second.first);
-        if (mst.count(edg[i].first) > 0 || mst.count(re) > 0) continue;
+        if (mst.erase(edg[i].first) > 0) continue;
         if (count <= s - edg[i].first.first) {
             count += edg[i].first.first;
             result.push_back(edg[i].second);
@@ -355,6 +355,7 @@ int main() {
             break;
         }
     }
+    sort(result.begin(), result.end());
     cout << result.size() << endl;
     for (size_t i = 0; i < result.size(); i++) {
         cout << result[i] << " ";

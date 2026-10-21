@@ -1,9 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
-const int d = 15;
-vector<vector<double>> a, b;
+vector<vector<long double>> a;
 
 int main() {
     freopen("markchain.in", "r", stdin);
@@ -13,36 +13,33 @@ int main() {
     cout.tie(nullptr);
 
     int n;
-    double s;
     cin >> n;
-    a.resize(n);
+    a.assign(n, vector<long double>(n + 1));
     for (int i = 0; i < n; i++) {
-        a[i].resize(n);
         for (int j = 0; j < n; j++) {
-            cin >> a[i][j];
+            cin >> a[j][i];
         }
     }
 
 
-    for (int u = 1; u <= min(d, n); u++) {
-        b = a;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                s = 0;
-                for (int k = 0; k < n; k++) {
-                    s += a[i][k] * a[k][j];
-                }
-                b[i][j] = s;
-            }
-        }
-        a = b;
-    }
     for (int i = 0; i < n; i++) {
-        s = 0;
-        for (int j = 0; j < n; j++) {
-            s += a[j][i];
-        }
-        cout << s / n << endl;
+        a[i][i] = 0;
+        for (int j = 0; j < n; j++) if (i != j) a[i][i] -= a[j][i];
     }
+    for (int j = 0; j <= n; j++) a[n - 1][j] = 1;
+    for (int col = 0; col < n; col++) {
+        int pivot = col;
+        for (int i = col + 1; i < n; i++)
+            if (abs(a[i][col]) > abs(a[pivot][col])) pivot = i;
+        swap(a[col], a[pivot]);
+        long double divisor = a[col][col];
+        for (int j = col; j <= n; j++) a[col][j] /= divisor;
+        for (int i = 0; i < n; i++) if (i != col) {
+            long double factor = a[i][col];
+            for (int j = col; j <= n; j++) a[i][j] -= factor * a[col][j];
+        }
+    }
+    cout.precision(12);
+    for (int i = 0; i < n; i++) cout << a[i][n] << '\n';
     return 0;
 }

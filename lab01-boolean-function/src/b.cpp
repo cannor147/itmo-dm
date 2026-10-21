@@ -27,6 +27,7 @@ int main(){
             cin >> a[i][j];
             if (a[i][j] != -1) kol[i]++;
         }
+        if (kol[i] == 0) return cout << "YES", 0;
     }
     while (true){
         int f = 0;

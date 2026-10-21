@@ -120,7 +120,8 @@ bool isntMonotonic(string s, int h){
             u = pow(2,j);
             t = pow(2, y-j-1);
             for (int i = 0; i < u; i++){
-                if (s.substr(2 + 2*t*i, t) > s.substr(2 + 2*t*i+t, t)) g = true;
+                for (int k = 0; k < t; k++)
+                    if (s[2 + 2*t*i + k] > s[2 + 2*t*i + t + k]) g = true;
                 if (g) break;
             }
             if (g) break;
