@@ -15,7 +15,7 @@ int main() {
     long long k, s, m, fac[h], a[h];
     bool visited[h];
     fac[0] = 1;
-    for (int i = 0; i < h; i++) fac[i + 1] = fac[i] * (i + 1);
+    for (int i = 0; i + 1 < h; i++) fac[i + 1] = fac[i] * (i + 1);
     memset(visited, false, sizeof(visited));
     cin >> n >> k;
     for (int i = 1; i <= n; i++){
