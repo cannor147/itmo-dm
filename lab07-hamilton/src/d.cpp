@@ -29,11 +29,12 @@ public:
     deque<size_t> find_hamiltonian_cycle() {
         deque<size_t> result;
         result.push_back(0);
+        if (size == 1) return result;
         for (size_t i = 1; i < size; i++) {
             auto it = result.begin();
             for (it = result.begin(); it != result.end(); it++) {
                 if (!matrix[*it][i]) {
-                    result.insert(it, i);
+                    it = result.insert(it, i);
                     break;
                 }
             }
@@ -43,7 +44,7 @@ public:
         }
         if (!matrix[*result.rbegin()][*result.begin()]) {
             stack<size_t> path, insert;
-            for (auto it = result.rbegin(); it != result.rend(); it++) {
+            for (auto it = result.rbegin(); it != result.rend(); it = result.rbegin()) {
                 if (matrix[*it][*result.begin()]) {
                     break;
                 } else {
@@ -55,10 +56,10 @@ public:
                 size_t j = path.top();
                 for (auto it = result.begin(); it != result.end(); it++) {
                     if (matrix[j][*it]) {
-                        result.insert(it, j);
+                        it = result.insert(it, j);
                         path.pop();
                         while (!insert.empty()) {
-                            result.insert(it, insert.top());
+                            it = result.insert(it, insert.top());
                             insert.pop();
                         }
                         break;
