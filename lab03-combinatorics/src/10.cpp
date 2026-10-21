@@ -22,6 +22,7 @@ int main() {
     cout << endl;
     bool f = true;
     int size = n;
+    if (n == 1) return 0;
     while (f){
         a[size - 1]--;
         a[size - 2]++;
