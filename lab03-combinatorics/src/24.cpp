@@ -36,7 +36,7 @@ void prevPerm(){
         if (b[i] > b[i + 1]) j = max(j, i);
         if (j != -1) break;
     }
-    for (int i = j + 1; i < n; i++){
+    for (int i = j + 1; j >= 0 && i < n; i++){
         if (b[i] < b[j]) m = max(m, b[i]);
     }
     if (j == -1){
@@ -61,7 +61,7 @@ void nextPerm(){
         if (c[i] < c[i + 1]) j = max(j, i);
         if (j != -1) break;
     }
-    for (int i = j + 1; i < n; i++){
+    for (int i = j + 1; j >= 0 && i < n; i++){
         if (c[i] > c[j]) m = min(m, c[i]);
     }
     if (j == -1){
