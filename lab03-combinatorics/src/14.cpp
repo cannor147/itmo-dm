@@ -13,7 +13,7 @@ int main() {
     int n;
     long long k, ans, m, fac[h], a[h];
     fac[0] = 1;
-    for (int i = 0; i < h; i++) fac[i + 1] = fac[i] * (i + 1);
+    for (int i = 0; i + 1 < h; i++) fac[i + 1] = fac[i] * (i + 1);
     cin >> n;
     for (int i = 0; i < n; i++) cin >> a[i];
     ans = 0;
