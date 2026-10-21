@@ -355,6 +355,7 @@ int main() {
             break;
         }
     }
+    sort(result.begin(), result.end());
     cout << result.size() << endl;
     for (size_t i = 0; i < result.size(); i++) {
         cout << result[i] << " ";
